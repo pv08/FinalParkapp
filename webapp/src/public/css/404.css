@@ -1,0 +1,17 @@
+.error404{
+  width: 400;
+  height: 400;
+  margin-left: 1;
+}
+.error404 img{
+  width: 400px;
+  height: 650px;
+}
+
+.error500{
+  margin-left: 1;
+}
+.error500 img{
+  width: 400px;
+  height: 400px;
+}

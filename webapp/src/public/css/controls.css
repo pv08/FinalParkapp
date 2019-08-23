@@ -1,0 +1,18 @@
+.row{
+    margin-left: 15rem;
+}
+.row .parking_lot{
+    width: 20rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.row .disabled{
+    width: 20rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    background:#dddddd;
+}
+
+.control_motor{
+    margin-left: 15rem;
+}
