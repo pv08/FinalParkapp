@@ -41,6 +41,7 @@ function setRandomPlate(){
 }
 function setRandomModel(){
   let char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let modelChar = '';
   let partNumber = '';
   for (var i = 0; i < 4; i++) {
     modelChar += char.charAt(Math.floor(Math.random() * char.length));
