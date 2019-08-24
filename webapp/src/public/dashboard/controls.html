@@ -28,45 +28,58 @@
 
     <div class="container" id="vagas">
       <h1 class="header center">Vagas</h1>
-      <% if (spot_alert) { %>
-        <div class="card-panel">
-          <span class="red-text text-darken-2">Não há vagas cadastradas. Contate um administrador</span>
-        </div>
-
-      <% } else{ %>
-        <div  class="row">
-        <% for (obj of spots){ %>
-          <% if (obj.status){ %>
-
-            <div style="margin-top:1rem;" class="col s10 m3">
-              <div style="width: 300px; height: 200px;"class="card">
-                <div class="card-content black-text">
-                  <span class="card-title">Vaga - <%= obj.position %></span>
-                  <h6 class="card-subtitle mb-2 text-muted">Disponível</h6>
-                  <p style="margin-bottom: 0.5rem;" class="card-text">Vaga disponível para usuário</p>
-                  <!-- <a href="/api/spot/status-change/<%= obj._id %>" class="red waves-effect waves-light btn-small" id="change_status" type="button">Disponibilizar</a> -->
-                </div>
-              </div>
-            </div>
-          <% } else{%>
-            <div style="margin-top:1rem;" class="col s10 m3">
-              <div style="width: 300px; height: 200px;"class="card">
-                <div class="card-content black-text">
-                  <span class="card-title">Vaga - <%= obj.position %></span>
-                  <h6 class="card-subtitle mb-2 text-muted"><%= obj.user.name %></h6>
-                  <p style="margin-bottom: 0.5rem;" class="card-text"><%= obj.user.car.car + " " + obj.user.car.model %> - <%= obj.user.car.plate %></p>
-                  <!-- <a href="/api/spot/status-change/<%= obj._id %>" class="red waves-effect waves-light btn-small" id="change_status" type="button">Indisponibilizar</a> -->
-                </div>
-              </div>
-            </div>
-          <% } %>
-        <% } %>
+      <div id="spot_alert" style="display:none;"class="card-panel">
+        <span class="red-text text-darken-2">Não há vagas cadastradas. Contate um administrador</span>
       </div>
+      <div id="vaga" class="row"></div>
 
-    <% } %>
+
     </div>
-    <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
-    <script src="../js/Firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyA-Uq6Zy_NXYIGO_TCzz9DL2yYuQTDdVZo",
+        authDomain: "parkappdb.firebaseapp.com",
+        databaseURL: "https://parkappdb.firebaseio.com",
+        projectId: "parkappdb",
+        storageBucket: "",
+        messagingSenderId: "680252819099",
+        appId: "1:680252819099:web:0296a6b525bae4b8"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var obj = document.getElementById('vaga');
+      var database = firebase.database();
+      var ref = database.ref('/Spots/');
+      ref.on("value", (snap) => {
+        var obj = document.getElementById('vaga');
+        obj.innerHTML ='';
+        snap.forEach((childSnap) => {
+          var childKey = childSnap.key;
+          var childData = childSnap.val();
+          console.log(childData);
+          obj.innerHTML+='<div class="col s10 m3"><div style="width: 300px; height: 200px;"class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">Disponível</h6><p style="margin-bottom: 0.5rem;" class="card-text">Vaga disponível para usuário</p></div></div></div>';
+
+        });
+
+
+          var spots = snap.val();
+        for (var i = 0; i < spots.length; i++) {
+          console.log(spots[i].position);
+
+        }
+        if (spots.length = 0){
+          document.getElementById("spot_alert").style.display = 'block';
+
+        }else{
+          document.getElementById("spot_alert").style.display = 'none';
+        }
+
+
+      });
+
+
+    </script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="../js/materialize.js"></script>
     <script src="../js/init.js"></script>

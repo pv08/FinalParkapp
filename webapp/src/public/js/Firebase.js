@@ -1,4 +1,4 @@
-(function({
+(function(){
   var firebaseConfig = {
     apiKey: "AIzaSyA-Uq6Zy_NXYIGO_TCzz9DL2yYuQTDdVZo",
     authDomain: "parkappdb.firebaseapp.com",
@@ -10,5 +10,14 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  
-}));
+
+
+  const vacancy = document.getElementById("vacancy");
+
+  const ref = firebase.database().ref().child('Spots');
+  console.log(ref);
+  ref.on("value", snap => {
+    var spots = snap.val();
+    vacancy.innerText = JSON.stringfy(spots, null, 3);
+  });
+});

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase.js"></script>
+  <title>Dashboard</title>
+
+
+
+
+
+
+</head>
+<body>
+  <nav class="red darken-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container black-text" href="/dashboard" class="brand-logo">Parkapp - Dashboard</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/api/auth/logout">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="container" id="vagas">
+    <h1 class="header center">Vagas</h1>
+  </div>
+  <pre id="vacancy"></pre>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyA-Uq6Zy_NXYIGO_TCzz9DL2yYuQTDdVZo",
+      authDomain: "parkappdb.firebaseapp.com",
+      databaseURL: "https://parkappdb.firebaseio.com",
+      projectId: "parkappdb",
+      storageBucket: "",
+      messagingSenderId: "680252819099",
+      appId: "1:680252819099:web:0296a6b525bae4b8"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var obj = document.getElementById('vacancy');
+    var database = firebase.database();
+    var ref = database.ref('/Spots/');
+    ref.on("value", (snap) => {
+      var spots = snap.val();
+      $('#vagas').append("<div class='classname'>"+spots+"</div>");
+    });
+
+
+
+  </script>
+
+  </body>
+</html>
