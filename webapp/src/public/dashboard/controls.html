@@ -58,16 +58,13 @@
           var childKey = childSnap.key;
           var childData = childSnap.val();
           console.log(childData);
-          obj.innerHTML+='<div class="col s10 m3"><div style="width: 300px; height: 200px;"class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">Disponível</h6><p style="margin-bottom: 0.5rem;" class="card-text">Vaga disponível para usuário</p></div></div></div>';
-
+          if(childData.status){
+            obj.innerHTML+='<div class="col s10 m3"><div class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">'+childData.user.name+'</h6><p style="margin-bottom: 0.5rem;" class="card-text">Vaga disponível para usuário</p></div></div></div>';
+          }else{
+            obj.innerHTML+='<div class="col s10 m3"><div class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">'+childData.user.name+'</h6><p style="margin-bottom: 0.5rem;" class="card-text">'+childData.car.car+' '+childData.car.model+'-'+childData.car.plate+'</p></div></div></div>';
+          }
         });
-
-
-          var spots = snap.val();
-        for (var i = 0; i < spots.length; i++) {
-          console.log(spots[i].position);
-
-        }
+        var spots = snap.val();
         if (spots.length = 0){
           document.getElementById("spot_alert").style.display = 'block';
 
