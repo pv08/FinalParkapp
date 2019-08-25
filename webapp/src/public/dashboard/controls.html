@@ -57,11 +57,11 @@
         snap.forEach((childSnap) => {
           var childKey = childSnap.key;
           var childData = childSnap.val();
-          console.log(childData);
+          console.log(childData)
           if(childData.status){
             obj.innerHTML+='<div class="col s10 m3"><div class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">'+childData.user.name+'</h6><p style="margin-bottom: 0.5rem;" class="card-text">Vaga disponível para usuário</p></div></div></div>';
           }else{
-            obj.innerHTML+='<div class="col s10 m3"><div class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">'+childData.user.name+'</h6><p style="margin-bottom: 0.5rem;" class="card-text">'+childData.car.car+' '+childData.car.model+'-'+childData.car.plate+'</p></div></div></div>';
+            obj.innerHTML+='<div class="col s10 m3"><div class="card"><div class="card-content black-text"><span class="card-title">Vaga '+childData.position+'</span><h6 class="card-subtitle mb-2 text-muted">'+childData.user.name+'</h6><p style="margin-bottom: 0.5rem;" class="card-text">'+childData.user.car.car+' '+childData.user.car.model+'-'+childData.user.car.plate+'</p></div></div></div>';
           }
         });
         var spots = snap.val();

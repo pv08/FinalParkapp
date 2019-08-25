@@ -5,7 +5,7 @@ firebase_config = {
   "authDomain": "parkappdb.firebaseapp.com",
   "databaseURL": "https://parkappdb.firebaseio.com",
   "storageBucket": "parkappdb.appspot.com",
-  "serviceAccount": "C:/Firebase/parkappdb-firebase-adminsdk.json"
+  "serviceAccount": "/home/pi/Documents/Firebase/parkappdb-firebase-adminsdk.json"
 }
 def firebaseConnection():
     firebase = pyrebase.initialize_app(firebase_config)

@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import signal, time, MFRC522
 from RaspMotor import *
+from firebase import *
 from utils import *
 
 MIFAREReader = MFRC522.MFRC522()
@@ -29,21 +30,21 @@ def main():
                     rfid = rfid.replace(char, '')
 
                 print(rfid)
-                if Mongo.getRFID(rfid) and Mongo.verifySpotVacancy():
-                    if Mongo.getRFIDUsability(rfid): #pesqwuisa se existe de fato o usuários
-                        print("existe usuário e existe ele nas vagas")
-                        Mongo.searchSpot(rfid)
-                        print("Balizador abaixa para ele")
-                        RaspMotor.motor_control(False, rfid=rfid)
-                        time.sleep(5)
-                        Util.setDefaultState()
-                    else:
-                        print("existe usuário, mas ele não está no estacionamento")
-                        Mongo.searchSpot(rfid)
-                        print("Balizador abaixa para ele")
-                        RaspMotor.motor_control(False, rfid=rfid)
-                        time.sleep(5)
-                        Util.setDefaultState()
+                if FirebaseDB.getRFID(rfid) and FirebaseDB.verifySpotVacancy():
+                        if FirebaseDB.getRFIDUsability(rfid): #pesqwuisa se existe de fato o usuários
+                            print("existe usuário e existe ele nas vagas")
+                            FirebaseDB.searchSpot(rfid)
+                            print("Balizador abaixa para ele")
+                            RaspMotor.motor_control(False, rfid=rfid)
+                            time.sleep(5)
+                            Util.setDefaultState()
+                        else:
+                            print("existe usuário, mas ele não está no estacionamento")
+                            FirebaseDB.searchSpot(rfid)
+                            print("Balizador abaixa para ele")
+                            RaspMotor.motor_control(False, rfid=rfid)
+                            time.sleep(5)
+                            Util.setDefaultState()
                 else:
                     print("usuário não existe ou não há vaga para ele")
 

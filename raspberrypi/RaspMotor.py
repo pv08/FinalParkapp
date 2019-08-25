@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time, os
-from DB import *
+
 from utils import *
 import RPi.GPIO as GPIO
 
@@ -40,6 +40,6 @@ def motor_control(operation, *args, **kwargs):
 
 
     GPIO.cleanup()
-    
+
     if 'rfid' in kwargs:
         print("[!] Operation of " + action + " performed by RFID user " + str(kwargs['rfid']))
