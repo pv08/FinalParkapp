@@ -24,52 +24,78 @@
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  <div class="container center">
-    <div class="section">
-      <div style="margin-left: 15rem;"class="row">
-        <div class="col s10 m3">
-          <div class="card">
-            <div class="card-content black-text">
-              <span class="card-title">Lista de usuário</span>
-              <p>Demonstra todos os usuários cadastrados no sistema.</p>
+  <% if (user.permission.permission == "Administrator") {%>
+    <div class="container center">
+      <div class="section">
+        <div style="margin-left: 15rem;"class="row">
+          <div class="col s10 m3">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">Lista de usuário</span>
+                <p>Demonstra todos os usuários cadastrados no sistema.</p>
+              </div>
+              <div class="card-action">
+                <a href="#">Entrar</a>
+              </div>
             </div>
-            <div class="card-action">
-              <a href="#">Entrar</a>
+          </div>
+          <div class="col s9 m3">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">Controle</span>
+                <p>Verifica todas as vagas disponíveis para os usuários.</p>
+              </div>
+              <div class="card-action">
+                <a href="/spots">Entrar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s9 m3">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">Comentários</span>
+                <p>Possui algum feedback. Por favor, compartilhe sua ideia</p>
+              </div>
+              <div class="card-action">
+                <a href="#">Entrar</a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col s9 m3">
-          <div class="card">
-            <div class="card-content black-text">
-              <span class="card-title">Controle</span>
-              <p>Verifica todas as vagas disponíveis para os usuários.</p>
-            </div>
-            <div class="card-action">
-              <a href="/spots">Entrar</a>
-            </div>
-          </div>
-        </div>
-        <div class="col s9 m3">
-          <div class="card">
-            <div class="card-content black-text">
-              <span class="card-title">Comentários</span>
-              <p>Possui algum feedback. Por favor, compartilhe sua ideia</p>
-            </div>
-            <div class="card-action">
-              <a href="#">Entrar</a>
-
-            </div>
-          </div>
-        </div>
-
       </div>
-
-    </div>
-    <br><br>
+      <br><br>
+  <% } else {%>
+    <div class="container center">
+      <div class="section">
+        <div style="margin-left: 15rem;"class="row">
+          <div class="col s9 m3">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">Controle</span>
+                <p>Verifica todas as vagas disponíveis para os usuários.</p>
+              </div>
+              <div class="card-action">
+                <a href="/spots">Entrar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s9 m3">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">Comentários</span>
+                <p>Possui algum feedback. Por favor, compartilhe sua ideia</p>
+              </div>
+              <div class="card-action">
+                <a href="#">Entrar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+  <% } %>
   </div>
-  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
-
-  <script src="../js/Firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="../js/materialize.js"></script>
   <script src="../js/init.js"></script>

@@ -54,7 +54,7 @@ function setRandomModel(){
 
 
 async function userInsert(data){
-  var databaseReference = firebaseDatabase.ref('/Users/' + data.matricula);
+  var databaseReference = firebaseDatabase.ref('/Users/' + data.rfid);
   databaseReference.set(data, (error) => {
     if(error){
       return false;
@@ -97,7 +97,7 @@ async function userPopulationInsert(){
           }
         ];
         for (var i = 0; i < data.length; i++) {
-          var databaseReference = firebaseDatabase.ref('/Users/' + data[i].matricula);
+          var databaseReference = firebaseDatabase.ref('/Users/' + data[i].rfid);
           databaseReference.set(data[i], (error) => {
             if(error){
               console.log(error)
@@ -112,7 +112,7 @@ async function userPopulationInsert(){
 
 async function spotPopulationInsert(){
   var data = []
-  var userVacancyReference = firebaseDatabase.ref('/Users/201510000');
+  var userVacancyReference = firebaseDatabase.ref('/Users/00:00:00:00:01');
   userVacancyReference.on("value", (userSnap) => {
     var user = userSnap.val();
     for (var i = 0; i < 11; i++) {
