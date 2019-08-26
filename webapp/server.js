@@ -94,10 +94,21 @@ async function userPopulationInsert(){
             permission: permission,
             status: true,
             creation: currentDatetime
-          }
+          },
+          {
+            matricula: '201510845',
+            rfid: '145:212:110:66:105',
+            password: defaultPassword,
+            name: 'Alair de Lima Barbosa',
+            car: audi,
+            permission: permission,
+            status: true,
+            creation: currentDatetime
+          },
+
         ];
         for (var i = 0; i < data.length; i++) {
-          var databaseReference = firebaseDatabase.ref('/Users/' + data[i].rfid);
+          var databaseReference = firebaseDatabase.ref('/Users/' + data[i].matricula);
           databaseReference.set(data[i], (error) => {
             if(error){
               console.log(error)
@@ -112,7 +123,7 @@ async function userPopulationInsert(){
 
 async function spotPopulationInsert(){
   var data = []
-  var userVacancyReference = firebaseDatabase.ref('/Users/00:00:00:00:01');
+  var userVacancyReference = firebaseDatabase.ref('/Users/201510000');
   userVacancyReference.on("value", (userSnap) => {
     var user = userSnap.val();
     for (var i = 0; i < 11; i++) {

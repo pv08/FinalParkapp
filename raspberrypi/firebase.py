@@ -27,7 +27,7 @@ class FirebaseDB:
                 print("O usuário " + rfid + " se encontra no estacionamento")
                 return True
             print("O usuário " + rfid + " não se encontra no estacionamento")
-            return False
+        return False
 
     def verifySpotVacancy():
         count = 0
@@ -73,7 +73,7 @@ class FirebaseDB:
                 current_spot = spot.val()
                 user_spot = current_spot['user']
                 if user_spot['rfid'] == rfid:
-                    print("RFID: " + user_spot['rfid'] + " na vaga " + current_spot['position'] + ". Então ele sai do estacionamento")
+                    print("RFID: " + user_spot['rfid'] + " na vaga " + str(current_spot['position']) + ". Então ele sai do estacionamento")
                     FirebaseDB.operateVacancy(current_spot['position'], FirebaseDB.getVacancyUser(), True)
                     break
         else:
@@ -81,12 +81,12 @@ class FirebaseDB:
             for spot in spots.each():
                 current_spot = spot.val()
                 if current_spot['status']:
-                    print("RFID: " + rfid + " não está no estacionamento. Então pega a vaga " + current_spot['position'] + " para ele entrar")
+                    print("RFID: " + rfid + " não está no estacionamento. Então pega a vaga " + str(current_spot['position']) + " para ele entrar")
                     FirebaseDB.operateVacancy(current_spot['position'], FirebaseDB.getUserObj(rfid), False)
                     break
 
     def operateVacancy(position, rfid, newState):
-        print("Alterar a posição " + position + " para usuario " + str(rfid) + " colocando " + str(newState))
+        print("Alterar a posição " + str(position) + " para usuario " + str(rfid) + " colocando " + str(newState))
 
         firebase = pyrebase.initialize_app(Util.setDefaultFirebaseConfig())
         database = firebase.database()
@@ -96,12 +96,12 @@ class FirebaseDB:
                 current_spot = spot.val()
                 if current_spot['position'] == position:
                     database.child("Spots").child(position).update({"user": rfid, "status": newState})
-                    print("Spot " + current_spot['position'] + " updated para " + str(newState))
+                    print("Spot " + str(current_spot['position']) + " updated para " + str(newState))
                     print("Spot ocupado agora")
         else:
             for spot in spots.each():
                 current_spot = spot.val()
                 if current_spot['position'] == position:
                     database.child("Spots").child(position).update({"user": rfid, "status": newState})
-                    print("Spot " + current_spot['position'] + " updated para " + str(newState))
+                    print("Spot " + str(current_spot['position']) + " updated para " + str(newState))
                     print("Spot livre agora")
